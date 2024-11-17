@@ -4278,8 +4278,7 @@ impl TryToRustTy for Type {
                 // variant here.
                 let ty = signature.try_to_rust_ty(ctx, item)?;
 
-                let prefix = ctx.trait_prefix();
-                Ok(syn::parse_quote! { ::#prefix::option::Option<#ty> })
+                Ok(syn::parse_quote! { #ty })
             }
             TypeKind::Array(item, len) | TypeKind::Vector(item, len) => {
                 let ty = item.try_to_rust_ty(ctx, &())?;
